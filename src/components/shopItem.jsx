@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
+import mainImage from '../static/shop/accessories/acc_hat_01_1.jpg';
 
 class ShopItem extends Component {
   render() {
-    return <div className="shop-item">shop item</div>;
+    return (
+      <div className="shop-item">
+        <img src={mainImage} alt="Rocco Flat Peak Cap" />
+        <h5>Rocco Flat Peak Cap</h5>
+        <p>99 eur</p>
+      </div>
+    );
   }
 }
 
