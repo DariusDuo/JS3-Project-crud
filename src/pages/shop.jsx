@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ShopList from '../components/shopList';
 
 class Shop extends Component {
   render() {
@@ -23,7 +24,9 @@ class Shop extends Component {
             ))}
           </div>
         </aside>
-        <main className="shop-list"></main>
+        <main>
+          <ShopList />
+        </main>
       </div>
     );
   }
