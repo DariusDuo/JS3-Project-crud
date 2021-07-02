@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import ShopList from '../components/shopList';
+import ShopSingleItem from '../components/shopSingleItem';
+import { Route, Switch } from 'react-router';
 
 class Shop extends Component {
   render() {
-    const { socialLink, shopCategories } = this.props.shop;
+    const { socialLink, shopCategories, items } = this.props.shop;
     return (
       <div className="shop-page d-flex">
         <aside className="categories-aside">
@@ -25,7 +27,9 @@ class Shop extends Component {
           </div>
         </aside>
         <main>
-          <ShopList />
+          <ShopList items={items} />
+          {/* <Route path="/shop/item/1" render={(props) => <ShopSingleItem {...props} />} />
+          <Route exact path="/shop" render={(props) => <ShopList items={items} {...props} />} /> */}
         </main>
       </div>
     );
@@ -33,3 +37,5 @@ class Shop extends Component {
 }
 
 export default Shop;
+
+// shop-item atvaizduoti 1 preke panasiai kaip yra pavyzdyje

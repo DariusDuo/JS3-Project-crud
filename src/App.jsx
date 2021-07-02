@@ -31,6 +31,35 @@ class App extends Component {
         { to: 'https://www.twitter.com', icon: 'fa fa-twitter' },
         { to: 'https://www.instagram.com', icon: 'fa fa-instagram' },
       ],
+      items: [
+        {
+          _id: 1,
+          title: 'Rocco Flat Peak Cap',
+          price: 99.99,
+          image: 'acc_hat_01_',
+          color: 'green',
+          size: 'normal',
+          category: 'accessories',
+        },
+        {
+          _id: 2,
+          title: 'Stealth Bomber Jacket',
+          price: 1599.95,
+          image: 'acc_jacket_01_',
+          color: 'navy',
+          size: 'normal',
+          category: 'outerwear',
+        },
+        {
+          _id: 3,
+          title: 'Feather Slim Fit Denim Jeans',
+          price: 1299.95,
+          image: 'denim_01_',
+          color: 'indigo',
+          size: 'normal',
+          category: 'jeans',
+        },
+      ],
     },
   };
   render() {
