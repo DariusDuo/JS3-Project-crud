@@ -41,7 +41,7 @@ class ShopSingleItem extends Component {
             </div>
             <Button outline>Add to cart</Button>
             <Button>Buy it now</Button>
-            <div>soclial</div>
+            <div>social</div>
           </div>
         </div>
         <p className="single-item__description">
