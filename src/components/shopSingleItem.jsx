@@ -3,23 +3,40 @@ import Button from './common/button/button';
 import SocialLinks from './common/socialLinks';
 
 class ShopSingleItem extends Component {
-  state = {};
+  constructor() {
+    super();
+    this.state = {
+      mainImage: '',
+      images: [],
+    };
+  }
+
+  componentDidMount() {
+    const { item } = this.props;
+    const imagesRequired = item.images.map((imgNo) => require(`../static/shop/${item.category}/${item.image}${imgNo}.jpg`).default);
+    this.setState({ images: imagesRequired, mainImage: imagesRequired[0] });
+  }
+
+  handleMainImage = (img) => {
+    this.setState({ mainImage: img });
+  };
+
   render() {
-    const { socialLinksData } = this.props;
+    const { socialLinksData, item } = this.props;
     return (
       <div className="single-item ">
         <div className="d-flex">
           <div className="single__images-part w-50">
-            <img className="single__main-image" src="https://placeimg.com/640/480/people" alt="main item" />
+            <img className="single__main-image" src={this.state.mainImage} alt="main item" />
             <div className="single__photos d-flex flex-wrap">
-              {[1, 2, 3].map((img) => (
-                <img key={img} src="https://placeimg.com/100/100/people" alt="" />
+              {this.state.images.map((img) => (
+                <img onClick={() => this.handleMainImage(img)} key={img} className="single__item-image" src={img} alt="" />
               ))}
             </div>
           </div>
           <div className="single__item-info-part">
-            <h2 className="item-info__title">title</h2>
-            <p className="item-info__price">300 eur</p>
+            <h2 className="item-info__title">{item.title}</h2>
+            <p className="item-info__price">{item.price} eur</p>
             <div className="item-info__options d-flex ">
               <div>
                 <label htmlFor="colors">Colors</label>
@@ -40,7 +57,8 @@ class ShopSingleItem extends Component {
                 </select>
               </div>
             </div>
-            <Button className="outline">Add to cart</Button>
+            <Button outline>Add to cart</Button>
+            <br />
             <Button>Buy it now</Button>
             <SocialLinks titles socialLink={socialLinksData} />
           </div>

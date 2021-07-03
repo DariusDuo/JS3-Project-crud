@@ -40,6 +40,7 @@ class App extends Component {
           color: 'green',
           size: 'normal',
           category: 'accessories',
+          images: [1, 2, 3, 4, 5],
         },
         {
           _id: 2,
@@ -49,6 +50,7 @@ class App extends Component {
           color: 'navy',
           size: 'normal',
           category: 'outerwear',
+          images: [1, 2, 3, 4, 5],
         },
         {
           _id: 3,
@@ -58,6 +60,7 @@ class App extends Component {
           color: 'indigo',
           size: 'normal',
           category: 'jeans',
+          images: [1, 2, 3, 4, 5],
         },
       ],
     },
