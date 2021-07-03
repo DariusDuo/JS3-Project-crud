@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import Button from './common/button';
+import Button from './common/button/button';
 import SocialLinks from './common/socialLinks';
 
 class ShopSingleItem extends Component {
   state = {};
   render() {
+    const { socialLinksData } = this.props;
     return (
       <div className="single-item ">
         <div className="d-flex">
@@ -12,7 +13,7 @@ class ShopSingleItem extends Component {
             <img className="single__main-image" src="https://placeimg.com/640/480/people" alt="main item" />
             <div className="single__photos d-flex flex-wrap">
               {[1, 2, 3].map((img) => (
-                <img src="https://placeimg.com/100/100/people" alt="" />
+                <img key={img} src="https://placeimg.com/100/100/people" alt="" />
               ))}
             </div>
           </div>
@@ -39,9 +40,9 @@ class ShopSingleItem extends Component {
                 </select>
               </div>
             </div>
-            <Button outline>Add to cart</Button>
+            <Button className="outline">Add to cart</Button>
             <Button>Buy it now</Button>
-            <div>social</div>
+            <SocialLinks titles socialLink={socialLinksData} />
           </div>
         </div>
         <p className="single-item__description">

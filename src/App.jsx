@@ -26,10 +26,10 @@ class App extends Component {
         { _id: 6, title: 'Outerwear' },
         { _id: 7, title: 'Pants' },
       ],
-      socialLink: [
-        { to: 'https://www.facebook.com', icon: 'fa fa-facebook' },
-        { to: 'https://www.twitter.com', icon: 'fa fa-twitter' },
-        { to: 'https://www.instagram.com', icon: 'fa fa-instagram' },
+      socialLinksData: [
+        { to: 'https://www.facebook.com', icon: 'fa fa-facebook', title: 'share it' },
+        { to: 'https://www.twitter.com', icon: 'fa fa-twitter', title: 'tweet' },
+        { to: 'https://www.instagram.com', icon: 'fa fa-instagram', title: 'pin it' },
       ],
       items: [
         {
