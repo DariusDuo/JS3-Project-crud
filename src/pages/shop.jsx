@@ -27,9 +27,8 @@ class Shop extends Component {
           </div>
         </aside>
         <main>
-          <ShopList items={items} />
-          {/* <Route path="/shop/item/1" render={(props) => <ShopSingleItem {...props} />} />
-          <Route exact path="/shop" render={(props) => <ShopList items={items} {...props} />} /> */}
+          <Route path="/shop/item/1" render={(props) => <ShopSingleItem {...props} />} />
+          <Route exact path="/shop" render={(props) => <ShopList items={items} {...props} />} />
         </main>
       </div>
     );
