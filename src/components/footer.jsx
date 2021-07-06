@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import Button from './common/button/button';
 
 const Footer = (props) => {
   return (
@@ -15,7 +16,14 @@ const Footer = (props) => {
             ))}
           </nav>
         </div>
-        <div className="footer__cta">CTA</div>
+        <div className="footer__cta">
+          <h4 className="footer__title">Be in the know</h4>
+          <p className="promo">Promotions, new products and sales. Directly to your inbox.</p>
+          <div className="footer__input-group">
+            <input type="text" placeholder="Your Email" />
+            <Button size="medium">Subscribe</Button>
+          </div>
+        </div>
       </div>
       <div className="hr"></div>
       <div className="footer-bottom d-flex space-between">

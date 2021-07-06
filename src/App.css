@@ -66,6 +66,17 @@ h6 {
   display: block;
 }
 
+input {
+  background-color: #eaeaea;
+  border: solid 1px #eaeaea;
+  padding: 0.5em 0.2em;
+}
+
+input:focus-visible {
+  outline: none;
+  border: 1px solid var(--primary);
+}
+
 /* Header  */
 .header {
   background-color: var(--primary);
@@ -178,4 +189,13 @@ h6 {
 
 .footer__nav-link {
   line-height: 1.5;
+}
+
+.footer__input-group {
+  display: flex;
+  margin: 1em 0;
+}
+
+.footer__input-group input {
+  flex-grow: 1;
 }
