@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Button from './common/button/button';
 import SocialLinks from './common/socialLinks';
-import YouMayAlsoLike from './youMayAlsoLike';
+import YouMayAlsoLike from './common/youMayAlsoLike';
 
 class ShopSingleItem extends Component {
   constructor() {
@@ -9,20 +9,18 @@ class ShopSingleItem extends Component {
     this.state = {
       mainImage: '',
       images: [],
+      currentItemId: '',
+      currentItem: {},
     };
   }
 
   componentDidMount() {
-    const { images, image } = this.props.item;
-    const imagesRequired = images.map(
-      (imgNo) => require(`../static/shop/${image}${imgNo}.jpg`).default
-    );
-    // const images = require(`../static/shop/${image}3.jpg`).default
-    // nustatyti default image
-    // atvaozduoti main image componente
-    // pakeisti main image su paspaudimu ant nuotraukos
-    // padaryti kad images butu nedidli ir tilptu 3 po nuotrauka
-    this.setState({ images: imagesRequired, mainImage: imagesRequired[2] });
+    const currentItemId = +this.props.match.params.id;
+    const item = this.props.items.find((i) => i._id === currentItemId);
+
+    const { images, image, category } = item;
+    const imagesRequired = images.map((imgNo) => require(`../static/shop/${category}/${image}${imgNo}.jpg`).default);
+    this.setState({ images: imagesRequired, mainImage: imagesRequired[0], currentItemId, currentItem: item });
   }
 
   handleMainImage = (img) => {
@@ -30,7 +28,9 @@ class ShopSingleItem extends Component {
   };
 
   render() {
-    const { socialLinksData, item, items } = this.props;
+    const { socialLinksData, items } = this.props;
+    const currentItemId = +this.props.match.params.id;
+    const item = this.props.items.find((i) => i._id === currentItemId);
     return (
       <div className="single-item ">
         <div className="d-flex">
@@ -38,13 +38,7 @@ class ShopSingleItem extends Component {
             <img className="single__main-image" src={this.state.mainImage} alt="main item" />
             <div className="single__photos d-flex flex-wrap">
               {this.state.images.map((img) => (
-                <img
-                  onClick={() => this.handleMainImage(img)}
-                  key={img}
-                  className="single__item-image"
-                  src={img}
-                  alt=""
-                />
+                <img onClick={() => this.handleMainImage(img)} key={img} className="single__item-image" src={img} alt="" />
               ))}
             </div>
           </div>
@@ -78,11 +72,10 @@ class ShopSingleItem extends Component {
           </div>
         </div>
         <p className="single-item__description">
-          Our navy S.P.C.C logo flat peak cap is crafted from high quality Acrylic twill with a
-          contrast white 3D S.P.C.C embroidery on the crown. The crown is cut from six panels for
-          the perfect shape and has an adjustable PU back strap with metal clip to ensures a
-          comfortable fit. Our Flat Peak cap is finished off with an SPCC metal clip label, an SPCC
-          woven label, twill sweatband and the tonal embroidered eyelets ensure ventilation.
+          Our navy S.P.C.C logo flat peak cap is crafted from high quality Acrylic twill with a contrast white 3D S.P.C.C embroidery on the
+          crown. The crown is cut from six panels for the perfect shape and has an adjustable PU back strap with metal clip to ensures a
+          comfortable fit. Our Flat Peak cap is finished off with an SPCC metal clip label, an SPCC woven label, twill sweatband and the
+          tonal embroidered eyelets ensure ventilation.
         </p>
         <YouMayAlsoLike relatedItems={items} />
       </div>
@@ -91,17 +84,3 @@ class ShopSingleItem extends Component {
 }
 
 export default ShopSingleItem;
-
-// YouMayAlsoLike komponentas sukuriam komponenta
-
-// itraukiam i singleItem componenta
-
-// viduje atvaizduoja viena eile ShopItem componentus
-
-// nuododa veikia taip pat kaip ShopList
-
-// footer componentas. pasirasyti jsx
-
-// footer css
-
-// footer responsive

@@ -4,9 +4,8 @@ import './App.css';
 import HeaderX from './components/headerX';
 import Home from './pages/home';
 import Shop from './pages/shop';
-import About from './pages/about';
-import Misc from './pages/misc';
 import 'font-awesome/css/font-awesome.css';
+import Footer from './components/footer';
 
 class App extends Component {
   state = {
@@ -14,7 +13,6 @@ class App extends Component {
       { to: '/', title: 'Home' },
       { to: '/shop', title: 'Shop' },
       { to: '/about', title: 'About' },
-      { to: '/misc', title: 'Misc' },
     ],
     shop: {
       shopCategories: [
@@ -23,23 +21,20 @@ class App extends Component {
         { _id: 3, title: 'Footwear' },
         { _id: 4, title: 'Jeans' },
         { _id: 5, title: 'T-Shirts' },
-        { _id: 6, title: 'Outerwear' },
-        { _id: 7, title: 'Pants' },
       ],
       socialLinksData: [
-        { to: 'https://www.facebook.com', icon: 'fa fa-facebook', title: 'share it' },
+        { to: 'https://www.facebook.com', icon: 'fa fa-facebook', title: 'share' },
         { to: 'https://www.twitter.com', icon: 'fa fa-twitter', title: 'tweet' },
         { to: 'https://www.instagram.com', icon: 'fa fa-instagram', title: 'pin it' },
       ],
       items: [
         {
           _id: 1,
-          title: 'Rocco Flat Peak Cap',
+          title: 'Green hat',
           price: 99.99,
           image: 'acc_hat_01_',
           color: 'green',
           size: 'normal',
-          category: 'accessories',
           images: [1, 2, 3, 4, 5],
         },
         {
@@ -49,8 +44,7 @@ class App extends Component {
           image: 'acc_jacket_01_',
           color: 'navy',
           size: 'normal',
-          category: 'outerwear',
-          images: [1, 2, 3, 4, 5],
+          images: [1, 2],
         },
         {
           _id: 3,
@@ -59,25 +53,24 @@ class App extends Component {
           image: 'denim_01_',
           color: 'indigo',
           size: 'normal',
-          category: 'jeans',
-          images: [1, 2, 3, 4, 5],
+          images: [1, 2, 3],
         },
       ],
     },
   };
   render() {
+    const { navLinks, shop } = this.state;
     return (
       <div className="App">
-        <HeaderX navLinks={this.state.navLinks} />
+        <HeaderX navLinks={navLinks} />
         <div className="container">
           <Switch>
             {/* kai reikia perduoti props i route  mes tai darom su sekancia sintaxe */}
-            <Route path="/shop" render={(props) => <Shop shop={this.state.shop} {...props} />} />
+            <Route path="/shop" render={(props) => <Shop shop={shop} {...props} />} />
             <Route exact path="/" component={Home} />
-            <Route exact path="/about" component={About} />
-            <Route exact path="/misc" component={Misc} />
           </Switch>
         </div>
+        <Footer navLinks={navLinks} />
       </div>
     );
   }
