@@ -6,7 +6,7 @@ import Home from './pages/home';
 import Shop from './pages/shop';
 import 'font-awesome/css/font-awesome.css';
 import Footer from './components/footer';
-import axios from 'axios';
+import request from './utils/requests';
 
 class App extends Component {
   state = {
@@ -16,109 +16,63 @@ class App extends Component {
       { to: '/about', title: 'About' },
     ],
     shop: {
-      shopCategories: [
-        { _id: 1, title: 'Accessories' },
-        { _id: 2, title: 'Denim' },
-        { _id: 3, title: 'Footwear' },
-        { _id: 4, title: 'Jeans' },
-        { _id: 5, title: 'Jacket' },
-      ],
+      shopCategories: [],
+      items: [],
       socialLinksData: [
         { to: 'https://www.facebook.com', icon: 'fa fa-facebook', title: 'share' },
         { to: 'https://www.twitter.com', icon: 'fa fa-twitter', title: 'tweet' },
         { to: 'https://www.instagram.com', icon: 'fa fa-instagram', title: 'pin it' },
       ],
-      items: [
+      cart: {
+        randomId458: [
+          {
+            _id: 1,
+            title: 'Green hat',
+            price: 99.99,
+            image: 'acc_hat_01_',
+            color: 'green',
+            size: 'normal',
+            sku: 'hat_01',
+            quantity: 1,
+            // userId: 'links to user',
+          },
+          {
+            _id: 2,
+            title: 'Feather Slim Fit Denim Jeans',
+            price: 1299.95,
+            image: 'denim_01_',
+            color: 'indigo',
+            size: 'normal',
+            sku: '01',
+            quantity: 2,
+          },
+        ],
+      },
+      users: [
         {
-          _id: 1,
-          title: 'Green hat',
-          price: 99.99,
-          salePrice: 49.9,
-          image: 'acc_hat_01_',
-          color: 'green',
-          sizeQty: [
-            { size: 'small', quantity: 10 },
-            { size: 'medium', quantity: 7 },
-            { size: 'large', quantity: 15 },
-          ],
-          images: [1, 2, 3, 4, 5],
-          sku: 'hat_01',
-          quantity: 9,
-          category: 'accesories',
+          name: 'Bob Stone',
+          email: 'stone@bob.com',
+          password: 'pass',
         },
-        {
-          _id: 2,
-          title: 'Stealth Bomber Jacket',
-          price: 1599.95,
-          image: 'acc_jacket_01_',
-          color: 'navy',
-          size: 'normal',
-          images: [1, 2, 3],
-          category: 'jacket',
-        },
-        {
-          _id: 3,
-          title: 'Feather Slim Fit Denim Jeans',
-          price: 1299.95,
-          salePrice: 999.9,
-          image: 'denim_01_',
-          color: 'indigo',
-          size: 'normal',
-          images: [1, 2, 3],
-          category: 'denim',
-        },
-        {
-          _id: 4,
-          title: 'Autum best',
-          price: 299.99,
-          image: 'foot_autum_01_',
-          color: 'green',
-          size: 'normal',
-          images: [1, 2, 3, 4],
-          sku: 'autum_01',
-          quantity: 5,
-          category: 'footwear',
-        },
-      ],
-      cart: [
-        {
-          _id: 1,
-          title: 'Green hat',
-          price: 99.99,
-          image: 'acc_hat_01_',
-          color: 'green',
-          size: 'normal',
-          sku: 'hat_01',
-          quantity: 1,
-        },
-        {
-          _id: 2,
-          title: 'Feather Slim Fit Denim Jeans',
-          price: 1299.95,
-          image: 'denim_01_',
-          color: 'indigo',
-          size: 'normal',
-          sku: '01',
-          quantity: 2,
-        },
+        // sukurti modeli User
+
+        // sukurti route gauti visiems useriams
+
+        // route gauti konkreciam user pagal id
+
+        // route prideti nauja useri
       ],
     },
   };
 
   async componentDidMount() {
     console.log('app mounted');
-    // axios
-    //   .get('http://localhost:4000/api/shop/categories')
-    //   .then((result) => console.log(result.data))
-    //   .catch((err) => console.log(err));
-    try {
-      const { data } = await axios.get('http://localhost:4000/api/shop/categories');
-      console.log(data);
-    } catch (err) {
-      console.log(err);
-    }
+    console.log('ar promisas ar data ', request.getCategories());
+    const shopCopy = { ...this.state.shop };
+    shopCopy.shopCategories = await request.getCategories();
+    shopCopy.items = await request.getItems();
+    this.setState({ shop: shopCopy });
   }
-
   render() {
     const { navLinks, shop } = this.state;
     return (
