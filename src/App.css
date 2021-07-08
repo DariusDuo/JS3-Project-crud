@@ -52,6 +52,10 @@ h6 {
   width: 50%;
 }
 
+.pos-rel {
+  position: relative;
+}
+
 /* spacing classes */
 .mb-1 {
   margin-bottom: 0.5em;
@@ -106,6 +110,19 @@ textarea:focus-visible {
 }
 
 /* Shop page */
+.sale {
+  background-color: tomato;
+  color: snow;
+  height: 55px;
+  width: 55px;
+  border-radius: 50%;
+  display: block;
+  line-height: 55px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  text-align: center;
+}
 
 /* Search cart  */
 .shop-search input {
@@ -149,10 +166,23 @@ textarea:focus-visible {
   margin-left: 3px;
 }
 
+/* Shop list */
+
+.shop-list {
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 /* Shop item */
 .shop-item {
   text-align: center;
-  width: 33%;
+  width: 31%;
+}
+.shop-item img {
+  max-height: 200px;
+}
+.shop-items-part {
+  flex-grow: 1;
 }
 
 .shop-item .item-title {
@@ -175,7 +205,13 @@ textarea:focus-visible {
   font-size: 1.7em;
   margin-bottom: 0.3em;
 }
-.item-info__price {
+
+.single__item-info-part button {
+  min-width: 250px;
+  margin-bottom: 1em;
+}
+
+.single__item-info-part .price {
   font-size: 1.1em;
   margin-bottom: 2.5em;
 }
